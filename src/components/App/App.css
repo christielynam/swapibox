@@ -3,7 +3,7 @@
   min-height: 100vh;
   padding: 0;
   margin: 0;
-  background-color: #393939;
+  background-color: #081F29;
   text-align: center;
 }
 
@@ -12,5 +12,9 @@
   padding-top: 25px;
   color: yellow;
   font-size: 50px;
+}
+
+img {
+  padding-top: 25px;
 }
 
