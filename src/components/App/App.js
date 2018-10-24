@@ -26,13 +26,12 @@ class App extends Component {
 
   
   render() {
+    const { film } = this.state
     return (
       <div className="App">
         <h1 className='app-title'>SwapiBox</h1>
         <Route path='/' component={Nav} />
-        <Route exact path='/' render={() => (
-          <FilmScroll film={this.state.film} />)} 
-        />
+        <Route exact path='/' render={() => <FilmScroll film={film} />} />
       </div>
     );
   }
