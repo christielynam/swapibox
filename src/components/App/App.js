@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import FilmScroll from '../FilmScroll/FilmScroll';
 import './App.css';
@@ -25,11 +25,15 @@ class App extends Component {
     this.setState({film})
   }
 
+  pushHome = () => {
+    this.props.history.push('/')
+  }
+
   render() {
     const { film } = this.state
     return (
       <div className="App">
-        <h1 className='app-title'>SwapiBox</h1>
+        <h1 className='app-title' onClick={this.pushHome}>SwapiBox</h1>
         <Route path='/' component={Nav} />
         <Route exact path='/' render={() => (
           Object.keys(film).length ? 
@@ -41,4 +45,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
