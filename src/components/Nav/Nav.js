@@ -1,26 +1,21 @@
 import React from 'react'
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import './Nav.css';
 
 const NavBar = styled.div`
   display: flex;
   justify-content: space-evenly;
   padding-top: 25px;
-  button {
-    height: 40px;
-    width: 150px;
-    border-radius: 10px;
-    font-size: 15px;
-  };
 `
 
 const Nav = () => {
   return (
     <NavBar>
-      <NavLink to='/people'><button>PEOPLE</button></NavLink>
-      <NavLink to='/planets'><button>PLANETS</button></NavLink>
-      <NavLink to='/vehicles'><button>VEHICLES</button></NavLink>
-      <NavLink to='/favorites'><button>FAVORITES [num]</button></NavLink>
+      <NavLink className='nav-link' exact to='/people'>PEOPLE</NavLink>
+      <NavLink className='nav-link' exact to='/planets'>PLANETS</NavLink>
+      <NavLink className='nav-link' exact to='/vehicles'>VEHICLES</NavLink>
+      <NavLink className='nav-link' exact to='/favorites'>FAVORITES [num]</NavLink>
     </NavBar>
   )
 }
