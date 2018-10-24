@@ -24,9 +24,6 @@ class App extends Component {
     this.setState({film})
   }
 
-  filmLoading = () = {
-    
-  }
   
   render() {
     return (
