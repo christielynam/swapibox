@@ -82,7 +82,7 @@ ShallowWrapper {
         "rules": Array [
           "
   width: 90%;
-  height: 700px;
+  height: 650px;
   margin: auto;
   background-color: white;
   h3 {
@@ -170,7 +170,7 @@ ShallowWrapper {
           "rules": Array [
             "
   width: 90%;
-  height: 700px;
+  height: 650px;
   margin: auto;
   background-color: white;
   h3 {

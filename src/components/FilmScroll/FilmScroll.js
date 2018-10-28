@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const FilmContainer = styled.div`
   width: 90%;
-  height: 700px;
+  height: 650px;
   margin: auto;
   background-color: white;
   h3 {

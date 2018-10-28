@@ -11,6 +11,6 @@ const router = (
   </BrowserRouter>
 )
 
-ReactDOM.render(router, document.getElementById('root'));
+ReactDOM.unstable_createRoot(document.getElementById('root')).render(router);
 
 serviceWorker.unregister();

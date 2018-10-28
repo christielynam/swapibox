@@ -12,4 +12,5 @@ describe('Nav', () => {
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })
+  
 })
