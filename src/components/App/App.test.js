@@ -2,7 +2,6 @@ import React from 'react';
 import App from './App';
 import { shallow } from 'enzyme'
 import * as API from '../../utils/apiCalls'
-import * as CLEAN from '../../utils/cleaner'
 
 describe('App', () => {
   let wrapper
@@ -45,16 +44,10 @@ describe('componentDidMount', () => {
 
   it('calls fetchFilm', () => {
     API.fetchFilm = jest.fn()
-    CLEAN.cleanFilm = jest.fn()
     
     wrapper.instance().componentDidMount()
 
     expect(API.fetchFilm).toHaveBeenCalled()
-  })
-
-  it('calls cleanFilm', async () => {
-
-    expect(CLEAN.cleanFilm).toHaveBeenCalled()
   })
 
   it.skip('updates state with a random film', async () => {
@@ -83,7 +76,6 @@ describe('componentDidMount', () => {
 
     wrapper.instance().componentDidMount()
     await API.fetchFilm()
-    CLEAN.cleanFilm(uncleanFilm)
     expect(Object.keys(wrapper.state('film')).length).toEqual(3)
   })
 })

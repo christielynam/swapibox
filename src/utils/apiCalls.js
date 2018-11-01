@@ -1,7 +1,12 @@
 export const fetchFilm = async (id) => {
   const url = `https://swapi.co/api/films/${id}`
   const response = await fetch(url)
-  return await response.json()
+  const film = await response.json()
+  return { 
+    title: film.title,
+    opening_crawl: film.opening_crawl,
+    release_date: film.release_date
+  }
 }
 
 export const fetchPeople = async () => {

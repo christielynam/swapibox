@@ -5,7 +5,6 @@ import FilmScroll from '../FilmScroll/FilmScroll';
 import CardContainer from '../CardContainer/CardContainer';
 import './App.css';
 import { fetchFilm } from '../../utils/apiCalls';
-import { cleanFilm } from '../../utils/cleaner';
 import loading from '../../assets/loading.gif';
 import { fetchPeople } from '../../utils/apiCalls'
 
@@ -23,8 +22,7 @@ class App extends Component {
 
   async componentDidMount () {
     const num = Math.floor(Math.random() * 7 + 1)
-    const fullFilm = await fetchFilm(num)
-    const film = cleanFilm(fullFilm)
+    const film = await fetchFilm(num)
     this.setState({film})
   }
 
