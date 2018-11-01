@@ -11,7 +11,9 @@ describe('fetchFilm', () => {
   it('fetch is called with the correct params', () => {
     const mockId = 1
     const mockUrl = `https://swapi.co/api/films/${mockId}`
+    
     fetchFilm(mockId)
+
     expect(window.fetch).toHaveBeenCalledWith(mockUrl)
   })
 

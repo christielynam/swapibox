@@ -10,5 +10,6 @@ const router = (
   </BrowserRouter>
 )
 
-ReactDOM.unstable_createRoot(document.getElementById('root')).render(router);
+ReactDOM.render(router, document.getElementById('root'))
+
 
