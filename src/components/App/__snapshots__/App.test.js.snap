@@ -31,12 +31,16 @@ ShallowWrapper {
           SwapiBox
         </h1>,
         <Route
-          component={[Function]}
           path="/"
+          render={[Function]}
         />,
         <Route
           exact={true}
           path="/"
+          render={[Function]}
+        />,
+        <Route
+          path="/people"
           render={[Function]}
         />,
       ],
@@ -62,8 +66,8 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "component": [Function],
           "path": "/",
+          "render": [Function],
         },
         "ref": null,
         "rendered": null,
@@ -76,6 +80,18 @@ ShallowWrapper {
         "props": Object {
           "exact": true,
           "path": "/",
+          "render": [Function],
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "path": "/people",
           "render": [Function],
         },
         "ref": null,
@@ -99,12 +115,16 @@ ShallowWrapper {
             SwapiBox
           </h1>,
           <Route
-            component={[Function]}
             path="/"
+            render={[Function]}
           />,
           <Route
             exact={true}
             path="/"
+            render={[Function]}
+          />,
+          <Route
+            path="/people"
             render={[Function]}
           />,
         ],
@@ -130,8 +150,8 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "component": [Function],
             "path": "/",
+            "render": [Function],
           },
           "ref": null,
           "rendered": null,
@@ -144,6 +164,18 @@ ShallowWrapper {
           "props": Object {
             "exact": true,
             "path": "/",
+            "render": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "path": "/people",
             "render": [Function],
           },
           "ref": null,
