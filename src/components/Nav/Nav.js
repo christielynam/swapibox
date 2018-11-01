@@ -10,18 +10,23 @@ const NavBar = styled.div`
   padding-top: 25px;
 `
 
-const Nav = ({ getPeople }) => {
+const Nav = ({ getPeople, getPlanets }) => {
   return (
     <NavBar>
       <NavLink 
         className='nav-link' 
-        exact 
-        to='/people'
+        exact to='/people'
         onClick={getPeople}
       >
         PEOPLE
       </NavLink>
-      <NavLink className='nav-link' exact to='/planets'>PLANETS</NavLink>
+      <NavLink 
+        className='nav-link' 
+        exact to='/planets'
+        onClick={getPlanets}
+      >
+        PLANETS
+      </NavLink>
       <NavLink className='nav-link' exact to='/vehicles'>VEHICLES</NavLink>
       <NavLink className='nav-link' exact to='/favorites'>FAVORITES [num]</NavLink>
     </NavBar>

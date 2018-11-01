@@ -4,9 +4,8 @@ import Nav from '../Nav/Nav';
 import FilmScroll from '../FilmScroll/FilmScroll';
 import CardContainer from '../CardContainer/CardContainer';
 import './App.css';
-import { fetchFilm } from '../../utils/apiCalls';
 import loading from '../../assets/loading.gif';
-import { fetchPeople } from '../../utils/apiCalls'
+import { fetchFilm, fetchPeople, fetchPlanets } from '../../utils/apiCalls';
 
 
 class App extends Component {
@@ -37,6 +36,13 @@ class App extends Component {
     }
   }
 
+  getPlanets = async () => {
+    if(!this.state.planets.length) {
+      const planets = await fetchPlanets()
+      this.setState({ planets })
+    }
+  }
+
   render() {
     const { film, people } = this.state
     return (
@@ -44,7 +50,7 @@ class App extends Component {
         <h1 className='app-title' onClick={this.pushHome}>SwapiBox</h1>
         <Route 
           path='/' 
-          render={() => <Nav getPeople={this.getPeople} />} 
+          render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} />} 
         />
         <Route 
           exact path='/' 

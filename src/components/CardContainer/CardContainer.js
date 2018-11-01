@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const CardContainer = ({ data }) => {
   const displayCards = data.map(item => (
-    <Card item={item} />
+    <Card item={item} key={item.name} />
   ))
 
   return (
