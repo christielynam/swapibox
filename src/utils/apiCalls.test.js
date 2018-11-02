@@ -1,26 +1,57 @@
-import { fetchFilm } from './apiCalls'
+import { fetchFilm, fetchPeople } from './apiCalls'
 
 describe('fetchFilm', () => {
+  let mockUrl
+  let mockFilm
 
   beforeEach(() => {
+    mockUrl = 'www.starwars.com'
+    mockFilm = {
+      title: 'Some tile',
+      opening_crawl: 'Some description',
+      release_date: 'Some date'
+    }
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve({})
+      json: () => Promise.resolve(mockFilm)
     }))
   })
 
   it('fetch is called with the correct params', () => {
-    const mockId = 1
-    const mockUrl = `https://swapi.co/api/films/${mockId}`
     
-    fetchFilm(mockId)
+    fetchFilm(mockUrl)
 
     expect(window.fetch).toHaveBeenCalledWith(mockUrl)
   })
 
-  it('if the status is ok, it returns a film', async () => {
-    const mockId = 1
-    const expected = {}
+  it('it returns a film', async () => {
 
-    await expect(fetchFilm(mockId)).resolves.toEqual(expected)
+    await expect(fetchFilm(mockUrl)).resolves.toEqual(mockFilm)
+  })
+})
+
+describe('fetchPeople', () => {
+  let mockUrl
+  let mockPeople
+
+  beforeEach(() => {
+    mockUrl = 'www.starwars.com'
+    mockPeople = {
+      favorited: false, 
+      homeworld: 'Tatooine',
+      name: 'Luke Skywalker',
+      population: '200000',
+      species: 'Human',
+      type: 'people'
+    }
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(mockPeople)
+    }))
+  })
+
+  it('should call fetch with the correct params', () => {
+    
+    fetchPeople(mockUrl)
+
+    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
   })
 })

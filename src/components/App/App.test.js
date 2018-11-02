@@ -5,77 +5,48 @@ import * as API from '../../utils/apiCalls'
 
 describe('App', () => {
   let wrapper
-  let historyMock
-
+  
   beforeEach(() => {
-    historyMock = {
-      push: jest.fn()
-    }
-    wrapper = shallow(<App.WrappedComponent history={historyMock} />)
+    wrapper = shallow(<App />)
   })
 
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })
-  it('has initial state', () => {
-    const initialState = {
+  it('has default state', () => {
+    const defaultState = {
       film: {},
       people: [],
       planets: [],
       vehicles: []
     }
-    expect(wrapper.state()).toEqual(initialState)
+    expect(wrapper.state()).toEqual(defaultState)
   })
 
-  it.skip('should navigate to the home route when the app title is clicked', () => {
-    
-    // const title = wrapper.find('app-title')
-    // title.simulate('click')
-    // expect(historyMock.push).toHaveBeenCalled()
-  })
-})
-
-describe('componentDidMount', () => {
-  let wrapper
-
-  beforeEach(() => {
-    wrapper = shallow(<App.WrappedComponent />)
-  })
-
-  it('calls fetchFilm', () => {
+  it('CDM calls fetchFilm', async () => {
     API.fetchFilm = jest.fn()
     
-    wrapper.instance().componentDidMount()
+    await wrapper.instance().componentDidMount()
 
     expect(API.fetchFilm).toHaveBeenCalled()
   })
 
   it.skip('updates state with a random film', async () => {
     API.fetchFilm = jest.fn()
-    const uncleanFilm = {
-      characters: [],
-      created: '',
-      director: '',
-      edited: '',
-      episode_id: '',
-      opening_crawl: 'Some text',
-      planets: [],
-      producer: '',
-      release_date: 'Some date',
-      species: [],
-      starships: [],
-      title: 'Some title',
-      url: '',
-      vehicles: []
-    }
+    
     const expected = {
       title: 'Some title',
       opening_crawl: 'Some text',
       release_date: 'Some date'
     }
 
-    wrapper.instance().componentDidMount()
+    await wrapper.instance().componentDidMount()
     await API.fetchFilm()
-    expect(Object.keys(wrapper.state('film')).length).toEqual(3)
+    expect(wrapper.state('film')).toEqual(expected)
   })
 })
+
+
+
+  
+  

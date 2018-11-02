@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Nav from '../Nav/Nav';
 import FilmScroll from '../FilmScroll/FilmScroll';
 import CardContainer from '../CardContainer/CardContainer';
@@ -21,24 +21,24 @@ class App extends Component {
 
   async componentDidMount () {
     const num = Math.floor(Math.random() * 7 + 1)
-    const film = await fetchFilm(num)
+    const url = `https://swapi.co/api/films/${num}`
+    const film = await fetchFilm(url)
     this.setState({film})
   }
 
-  pushHome = () => {
-    this.props.history.push('/')
-  }
-
   getPeople = async () => {
+    const url = 'https://swapi.co/api/people'
     if(!this.state.people.length) {
-      const people = await fetchPeople()
+      const people = await fetchPeople(url)
       this.setState({ people })
     }
   }
 
+
   getPlanets = async () => {
+    const url = 'https://swapi.co/api/planets'
     if(!this.state.planets.length) {
-      const planets = await fetchPlanets()
+      const planets = await fetchPlanets(url)
       this.setState({ planets })
     }
   }
@@ -47,7 +47,7 @@ class App extends Component {
     const { film, people } = this.state
     return (
       <div className="App">
-        <h1 className='app-title' onClick={this.pushHome}>SwapiBox</h1>
+        <h1 className='app-title'>SwapiBox</h1>
         <Route 
           path='/' 
           render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} />} 
@@ -69,4 +69,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;

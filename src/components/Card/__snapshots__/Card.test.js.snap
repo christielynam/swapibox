@@ -20,7 +20,9 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <h3 />,
+        <h3
+          className=""
+        />,
         <p>
           Homeworld: 
         </p>,
@@ -30,7 +32,12 @@ ShallowWrapper {
         <p>
           Species: 
         </p>,
+        <img
+          alt="lightsaber icon - favorite"
+          src="lightsaber.png"
+        />,
       ],
+      "onClick": [Function],
     },
     "ref": null,
     "rendered": Array [
@@ -40,6 +47,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": undefined,
+          "className": "",
         },
         "ref": null,
         "rendered": null,
@@ -96,6 +104,18 @@ ShallowWrapper {
         ],
         "type": "p",
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "alt": "lightsaber icon - favorite",
+          "src": "lightsaber.png",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "img",
+      },
     ],
     "type": Object {
       "$$typeof": Symbol(react.forward_ref),
@@ -108,7 +128,12 @@ ShallowWrapper {
   width: 200px;
   height: 250px;
   margin: 20px;
-  background-color: whitesmoke
+  background-color: whitesmoke;
+  img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer
+  }
 ",
         ],
       },
@@ -127,7 +152,9 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <h3 />,
+          <h3
+            className=""
+          />,
           <p>
             Homeworld: 
           </p>,
@@ -137,7 +164,12 @@ ShallowWrapper {
           <p>
             Species: 
           </p>,
+          <img
+            alt="lightsaber icon - favorite"
+            src="lightsaber.png"
+          />,
         ],
+        "onClick": [Function],
       },
       "ref": null,
       "rendered": Array [
@@ -147,6 +179,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": undefined,
+            "className": "",
           },
           "ref": null,
           "rendered": null,
@@ -203,6 +236,18 @@ ShallowWrapper {
           ],
           "type": "p",
         },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "alt": "lightsaber icon - favorite",
+            "src": "lightsaber.png",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "img",
+        },
       ],
       "type": Object {
         "$$typeof": Symbol(react.forward_ref),
@@ -215,7 +260,12 @@ ShallowWrapper {
   width: 200px;
   height: 250px;
   margin: 20px;
-  background-color: whitesmoke
+  background-color: whitesmoke;
+  img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer
+  }
 ",
           ],
         },

@@ -1,5 +1,4 @@
-export const fetchFilm = async (id) => {
-  const url = `https://swapi.co/api/films/${id}`
+export const fetchFilm = async (url) => {
   const response = await fetch(url)
   const film = await response.json()
   return { 
@@ -11,8 +10,7 @@ export const fetchFilm = async (id) => {
 
 // PEOPLE
 
-export const fetchPeople = async () => {
-  const url = 'https://swapi.co/api/people'
+export const fetchPeople = async (url) => {
   const response = await fetch(url)
   const people = await response.json()
   const withHomeworld = await getHomeworld(people.results)
@@ -46,8 +44,8 @@ const getSpecies = (peopleArray) => {
 
 // PLANETS
 
-export const fetchPlanets = async () => {
-  const url = 'https://swapi.co/api/planets'
+export const fetchPlanets = async (endpoint) => {
+  const url = `https://swapi.co/api/${endpoint}`
   const response = await fetch(url)
   const planets = await response.json()
   return await getResidents(planets.results) 
