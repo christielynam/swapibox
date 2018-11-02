@@ -9,9 +9,9 @@ const Container = styled.div`
   justify-content: center
 `
 
-const CardContainer = ({ data }) => {
+const CardContainer = ({ data, toggleFavorite }) => {
   const displayCards = data.map(item => (
-    <Card item={item} key={item.name} />
+    <Card item={item} toggleFavorite={toggleFavorite} key={item.name} />
   ))
 
   return (

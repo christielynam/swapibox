@@ -50,6 +50,17 @@ class App extends Component {
     }
   }
 
+  toggleFavorite = (type, name) => {
+    const toggled = this.state[type].map(thing => thing.name === name ? {...thing, favorited: !thing.favorited} : thing)
+    this.setState({ [type]: toggled }) 
+  }
+
+  collectFavorites = () => {
+    const { people, planets, vehicles } = this.state
+    const allTheThings = [...people, ...planets, ...vehicles]
+    return allTheThings.filter(thing => thing.favorited)
+  }
+
   render() {
     const { film, people, planets, vehicles } = this.state
     return (
@@ -69,15 +80,15 @@ class App extends Component {
         />
         <Route 
           path='/people' 
-          render={() => <CardContainer data={people} />} 
+          render={() => <CardContainer data={people} toggleFavorite={this.toggleFavorite} />} 
         />
         <Route 
           path='/planets' 
-          render={() => <CardContainer data={planets} />} 
+          render={() => <CardContainer data={planets} toggleFavorite={this.toggleFavorite} />} 
         />
         <Route 
           path='/vehicles' 
-          render={() => <CardContainer data={vehicles} />} 
+          render={() => <CardContainer data={vehicles} toggleFavorite={this.toggleFavorite} />} 
         />
       </div>
     );
