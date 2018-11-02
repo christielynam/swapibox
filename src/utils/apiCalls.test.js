@@ -1,4 +1,4 @@
-import { fetchFilm, fetchPeople } from './apiCalls'
+import * as API from './apiCalls'
 
 describe('fetchFilm', () => {
   let mockUrl
@@ -16,16 +16,16 @@ describe('fetchFilm', () => {
     }))
   })
 
-  it('fetch is called with the correct params', () => {
+  it('calls fetch is called with the correct params', () => {
     
-    fetchFilm(mockUrl)
+    API.fetchFilm(mockUrl)
 
     expect(window.fetch).toHaveBeenCalledWith(mockUrl)
   })
 
-  it('it returns a film', async () => {
+  it('returns a film', async () => {
 
-    await expect(fetchFilm(mockUrl)).resolves.toEqual(mockFilm)
+    await expect(API.fetchFilm(mockUrl)).resolves.toEqual(mockFilm)
   })
 })
 
@@ -49,8 +49,53 @@ describe('fetchPeople', () => {
   })
 
   it('should call fetch with the correct params', () => {
+    API.fetchPeople(mockUrl)
+
+    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+  })
+
+  it.skip('calls getHomeworld', async () => {
+    const mockHomeworlds = [
+      {
+        name: 'Christie',
+        homeworld: 'Earth',
+        language: 'English',
+        species: 'Human',
+        population: '7.3bill',
+        favoriteFood: 'Tacos'
+      },
+      { 
+        name: 'Brooklyn',
+        homeworld: 'Earth',
+        language: 'Barking',
+        species: 'Dog',
+        population: '7.3bill',
+        favoriteFood: 'Cheese Puffs'
+      }
+    ];
+  
+    API.getHomeworld = jest.fn().mockImplementation(() => Promise.resolve(mockHomeworlds))
     
-    fetchPeople(mockUrl)
+    await API.fetchPeople(mockUrl)
+
+    expect(API.getHomeworld).toHaveBeenCalled()
+  })
+})
+
+describe('fetchPlanets', () => {
+  let mockUrl
+  let mockPlanets
+
+  beforeEach(() => {
+    mockUrl = 'www.starwars.com'
+    mockPlanets = []
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve()
+    }))
+  })
+
+  it('should call fetch with the correct params', () => {
+    API.fetchPlanets(mockUrl)
 
     expect(window.fetch).toHaveBeenCalledWith(mockUrl)
   })

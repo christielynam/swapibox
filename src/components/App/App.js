@@ -5,7 +5,7 @@ import FilmScroll from '../FilmScroll/FilmScroll';
 import CardContainer from '../CardContainer/CardContainer';
 import './App.css';
 import loading from '../../assets/loading.gif';
-import { fetchFilm, fetchPeople, fetchPlanets } from '../../utils/apiCalls';
+import { fetchFilm, fetchPeople, fetchPlanets, fetchVehicles } from '../../utils/apiCalls';
 
 
 class App extends Component {
@@ -34,7 +34,6 @@ class App extends Component {
     }
   }
 
-
   getPlanets = async () => {
     const url = 'https://swapi.co/api/planets'
     if(!this.state.planets.length) {
@@ -43,14 +42,22 @@ class App extends Component {
     }
   }
 
+  getVehicles = async () => {
+    const url = 'https://swapi.co/api/vehicles'
+    if(!this.state.vehicles.length) {
+      const vehicles = await fetchVehicles(url)
+      this.setState({ vehicles })
+    }
+  }
+
   render() {
-    const { film, people } = this.state
+    const { film, people, planets, vehicles } = this.state
     return (
       <div className="App">
         <h1 className='app-title'>SwapiBox</h1>
         <Route 
           path='/' 
-          render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} />} 
+          render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} getVehicles={this.getVehicles} />} 
         />
         <Route 
           exact path='/' 
@@ -63,6 +70,14 @@ class App extends Component {
         <Route 
           path='/people' 
           render={() => <CardContainer data={people} />} 
+        />
+        <Route 
+          path='/planets' 
+          render={() => <CardContainer data={planets} />} 
+        />
+        <Route 
+          path='/vehicles' 
+          render={() => <CardContainer data={vehicles} />} 
         />
       </div>
     );

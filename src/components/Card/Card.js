@@ -5,7 +5,7 @@ import './Card.css'
 
 const CardStyle = styled.div`
   width: 200px;
-  height: 250px;
+  height: 450px;
   margin: 20px;
   background-color: whitesmoke;
   img {
@@ -29,11 +29,17 @@ class Card extends Component {
     const { item } = this.props
     return (
       <CardStyle onClick={this.toggleCard}>
-        <h3 className={favorited ? 'favorited' : ''}>{item.name}</h3>
-        <p>Homeworld: {item.homeworld}</p>
-        <p>Population: {item.population}</p>
-        <p>Species: {item.species}</p>
         <img src={lightsaber} alt='lightsaber icon - favorite' />
+        <h3 className={favorited ? 'favorited' : ''}>{item.name}</h3>
+        {item.homeworld && <p>Homeworld: {item.homeworld}</p>}
+        {item.population && <p>Population: {item.population}</p>}
+        {item.species && <p>Species: {item.species}</p>}
+        {item.terrain && <p>Terrain: {item.terrain}</p>}
+        {item.climate && <p>Climate: {item.climate}</p>}
+        {item.residents && <p>Residents: {item.residents.toString()}</p>}
+        {item.model && <p>Model: {item.model}</p>}
+        {item.class && <p>Class: {item.class}</p>}
+        {item.passengers && <p>Passengers: {item.passengers}</p>}
       </CardStyle>
     )
   }
