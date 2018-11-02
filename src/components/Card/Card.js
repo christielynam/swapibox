@@ -15,7 +15,7 @@ const CardStyle = styled.div`
   }
 `
 
-const Card = ({ item, toggleFavorite, count }) => {
+const Card = ({ item, toggleFavorite }) => {
   return (
     <CardStyle onClick={() => toggleFavorite(item.type, item.name)}>
       <img src={lightsaber} alt='lightsaber icon - favorite' />

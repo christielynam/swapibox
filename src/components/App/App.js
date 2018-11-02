@@ -7,7 +7,6 @@ import './App.css';
 import loading from '../../assets/loading.gif';
 import { fetchFilm, fetchPeople, fetchPlanets, fetchVehicles } from '../../utils/apiCalls';
 
-
 class App extends Component {
   constructor() {
     super()
@@ -85,15 +84,15 @@ class App extends Component {
         />
         <Route 
           path='/people' 
-          render={() => <CardContainer data={people} toggleFavorite={this.toggleFavorite} count={this.favoriteCount} />} 
+          render={() => <CardContainer data={people} toggleFavorite={this.toggleFavorite} />} 
         />
         <Route 
           path='/planets' 
-          render={() => <CardContainer data={planets} toggleFavorite={this.toggleFavorite} count={this.favoriteCount} />} 
+          render={() => <CardContainer data={planets} toggleFavorite={this.toggleFavorite} />} 
         />
         <Route 
           path='/vehicles' 
-          render={() => <CardContainer data={vehicles} toggleFavorite={this.toggleFavorite} count={this.favoriteCount} />} 
+          render={() => <CardContainer data={vehicles} toggleFavorite={this.toggleFavorite} />} 
         />
         <Route 
           path='/favorites' 
