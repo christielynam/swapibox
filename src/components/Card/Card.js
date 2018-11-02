@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import lightsaber from '../../assets/lightsaber.png'
 import './Card.css'
@@ -15,7 +15,7 @@ const CardStyle = styled.div`
   }
 `
 
-const Card = ({ item, toggleFavorite }) => {
+const Card = ({ item, toggleFavorite, count }) => {
   return (
     <CardStyle onClick={() => toggleFavorite(item.type, item.name)}>
       <img src={lightsaber} alt='lightsaber icon - favorite' />

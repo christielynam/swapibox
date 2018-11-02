@@ -10,7 +10,7 @@ const NavBar = styled.div`
   padding-top: 25px;
 `
 
-const Nav = ({ getPeople, getPlanets, getVehicles }) => {
+const Nav = ({ getPeople, getPlanets, getVehicles, count }) => {
   return (
     <NavBar>
       <NavLink 
@@ -38,7 +38,7 @@ const Nav = ({ getPeople, getPlanets, getVehicles }) => {
         className='nav-link' 
         exact to='/favorites'
       >
-        FAVORITES [num]
+        FAVORITES [{count()}]
       </NavLink>
     </NavBar>
   )

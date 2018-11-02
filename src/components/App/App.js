@@ -61,6 +61,11 @@ class App extends Component {
     return allTheThings.filter(thing => thing.favorited)
   }
 
+  favoriteCount = () => {
+    const favs = this.collectFavorites()
+    return favs.length
+  }
+
   render() {
     const { film, people, planets, vehicles } = this.state
     return (
@@ -68,7 +73,7 @@ class App extends Component {
         <h1 className='app-title'>SwapiBox</h1>
         <Route 
           path='/' 
-          render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} getVehicles={this.getVehicles} />} 
+          render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} getVehicles={this.getVehicles} count={this.favoriteCount} />} 
         />
         <Route 
           exact path='/' 
@@ -80,15 +85,19 @@ class App extends Component {
         />
         <Route 
           path='/people' 
-          render={() => <CardContainer data={people} toggleFavorite={this.toggleFavorite} />} 
+          render={() => <CardContainer data={people} toggleFavorite={this.toggleFavorite} count={this.favoriteCount} />} 
         />
         <Route 
           path='/planets' 
-          render={() => <CardContainer data={planets} toggleFavorite={this.toggleFavorite} />} 
+          render={() => <CardContainer data={planets} toggleFavorite={this.toggleFavorite} count={this.favoriteCount} />} 
         />
         <Route 
           path='/vehicles' 
-          render={() => <CardContainer data={vehicles} toggleFavorite={this.toggleFavorite} />} 
+          render={() => <CardContainer data={vehicles} toggleFavorite={this.toggleFavorite} count={this.favoriteCount} />} 
+        />
+        <Route 
+          path='/favorites' 
+          render={() => <CardContainer data={this.collectFavorites()} toggleFavorite={this.toggleFavorite} />} 
         />
       </div>
     );
