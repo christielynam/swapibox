@@ -3,7 +3,12 @@
 exports[`Nav matches the snapshot 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Nav />,
+  Symbol(enzyme.__unrendered__): <Nav
+    count={[Function]}
+    getPeople={[Function]}
+    getPlanets={[Function]}
+    getVehicles={[Function]}
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -23,6 +28,7 @@ ShallowWrapper {
           aria-current="page"
           className="nav-link"
           exact={true}
+          onClick={[Function]}
           to="/people"
         >
           PEOPLE
@@ -32,6 +38,7 @@ ShallowWrapper {
           aria-current="page"
           className="nav-link"
           exact={true}
+          onClick={[Function]}
           to="/planets"
         >
           PLANETS
@@ -41,6 +48,7 @@ ShallowWrapper {
           aria-current="page"
           className="nav-link"
           exact={true}
+          onClick={[Function]}
           to="/vehicles"
         >
           VEHICLES
@@ -52,7 +60,8 @@ ShallowWrapper {
           exact={true}
           to="/favorites"
         >
-          FAVORITES [num]
+          FAVORITES [
+          ]
         </NavLink>,
       ],
     },
@@ -68,7 +77,7 @@ ShallowWrapper {
           "children": "PEOPLE",
           "className": "nav-link",
           "exact": true,
-          "onClick": undefined,
+          "onClick": [Function],
           "to": "/people",
         },
         "ref": null,
@@ -85,7 +94,7 @@ ShallowWrapper {
           "children": "PLANETS",
           "className": "nav-link",
           "exact": true,
-          "onClick": undefined,
+          "onClick": [Function],
           "to": "/planets",
         },
         "ref": null,
@@ -102,6 +111,7 @@ ShallowWrapper {
           "children": "VEHICLES",
           "className": "nav-link",
           "exact": true,
+          "onClick": [Function],
           "to": "/vehicles",
         },
         "ref": null,
@@ -115,13 +125,21 @@ ShallowWrapper {
         "props": Object {
           "activeClassName": "active",
           "aria-current": "page",
-          "children": "FAVORITES [num]",
+          "children": Array [
+            "FAVORITES [",
+            undefined,
+            "]",
+          ],
           "className": "nav-link",
           "exact": true,
           "to": "/favorites",
         },
         "ref": null,
-        "rendered": "FAVORITES [num]",
+        "rendered": Array [
+          "FAVORITES [",
+          undefined,
+          "]",
+        ],
         "type": [Function],
       },
     ],
@@ -160,6 +178,7 @@ ShallowWrapper {
             aria-current="page"
             className="nav-link"
             exact={true}
+            onClick={[Function]}
             to="/people"
           >
             PEOPLE
@@ -169,6 +188,7 @@ ShallowWrapper {
             aria-current="page"
             className="nav-link"
             exact={true}
+            onClick={[Function]}
             to="/planets"
           >
             PLANETS
@@ -178,6 +198,7 @@ ShallowWrapper {
             aria-current="page"
             className="nav-link"
             exact={true}
+            onClick={[Function]}
             to="/vehicles"
           >
             VEHICLES
@@ -189,7 +210,8 @@ ShallowWrapper {
             exact={true}
             to="/favorites"
           >
-            FAVORITES [num]
+            FAVORITES [
+            ]
           </NavLink>,
         ],
       },
@@ -205,7 +227,7 @@ ShallowWrapper {
             "children": "PEOPLE",
             "className": "nav-link",
             "exact": true,
-            "onClick": undefined,
+            "onClick": [Function],
             "to": "/people",
           },
           "ref": null,
@@ -222,7 +244,7 @@ ShallowWrapper {
             "children": "PLANETS",
             "className": "nav-link",
             "exact": true,
-            "onClick": undefined,
+            "onClick": [Function],
             "to": "/planets",
           },
           "ref": null,
@@ -239,6 +261,7 @@ ShallowWrapper {
             "children": "VEHICLES",
             "className": "nav-link",
             "exact": true,
+            "onClick": [Function],
             "to": "/vehicles",
           },
           "ref": null,
@@ -252,13 +275,21 @@ ShallowWrapper {
           "props": Object {
             "activeClassName": "active",
             "aria-current": "page",
-            "children": "FAVORITES [num]",
+            "children": Array [
+              "FAVORITES [",
+              undefined,
+              "]",
+            ],
             "className": "nav-link",
             "exact": true,
             "to": "/favorites",
           },
           "ref": null,
-          "rendered": "FAVORITES [num]",
+          "rendered": Array [
+            "FAVORITES [",
+            undefined,
+            "]",
+          ],
           "type": [Function],
         },
       ],

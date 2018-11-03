@@ -6,7 +6,7 @@ describe('Nav', () => {
   let wrapper
 
   beforeEach(() => {
-    wrapper = shallow(<Nav />)
+    wrapper = shallow(<Nav getPeople={() => {}} getPlanets={() => {}} getVehicles={() => {}} count={() =>{}} />)
   })
 
   it('matches the snapshot', () => {

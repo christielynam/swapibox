@@ -1,7 +1,9 @@
 import React from 'react';
 import App from './App';
 import { shallow } from 'enzyme'
-import * as API from '../../utils/apiCalls'
+import fetchFilm from '../../api/fetchFilm'
+
+// jest.mock('../../api/fetchFilm.js')
 
 describe('App', () => {
   let wrapper
@@ -13,7 +15,8 @@ describe('App', () => {
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })
-  it('has default state', () => {
+
+  it('should have a default state', () => {
     const defaultState = {
       film: {},
       people: [],
@@ -23,16 +26,14 @@ describe('App', () => {
     expect(wrapper.state()).toEqual(defaultState)
   })
 
-  it('CDM calls fetchFilm', async () => {
-    API.fetchFilm = jest.fn()
+  it.skip('CDM calls fetchFilm', async () => {
     
     await wrapper.instance().componentDidMount()
 
-    expect(API.fetchFilm).toHaveBeenCalled()
+    expect(fetchFilm).toHaveBeenCalled()
   })
 
   it.skip('updates state with a random film', async () => {
-    API.fetchFilm = jest.fn()
     
     const expected = {
       title: 'Some title',
@@ -41,7 +42,7 @@ describe('App', () => {
     }
 
     await wrapper.instance().componentDidMount()
-    await API.fetchFilm()
+    await fetchFilm()
     expect(wrapper.state('film')).toEqual(expected)
   })
 })

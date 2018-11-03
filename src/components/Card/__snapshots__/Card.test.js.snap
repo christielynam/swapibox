@@ -20,90 +20,27 @@ ShallowWrapper {
     "nodeType": "function",
     "props": Object {
       "children": Array [
-        <h3
-          className=""
-        />,
-        <p>
-          Homeworld: 
-        </p>,
-        <p>
-          Population: 
-        </p>,
-        <p>
-          Species: 
-        </p>,
         <img
           alt="lightsaber icon - favorite"
           src="lightsaber.png"
         />,
+        <h3
+          className=""
+        />,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
       ],
       "onClick": [Function],
     },
     "ref": null,
     "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": undefined,
-          "className": "",
-        },
-        "ref": null,
-        "rendered": null,
-        "type": "h3",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            "Homeworld: ",
-            undefined,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          "Homeworld: ",
-          undefined,
-        ],
-        "type": "p",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            "Population: ",
-            undefined,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          "Population: ",
-          undefined,
-        ],
-        "type": "p",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            "Species: ",
-            undefined,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          "Species: ",
-          undefined,
-        ],
-        "type": "p",
-      },
       Object {
         "instance": null,
         "key": undefined,
@@ -116,6 +53,27 @@ ShallowWrapper {
         "rendered": null,
         "type": "img",
       },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": undefined,
+          "className": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": "h3",
+      },
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
+      undefined,
     ],
     "type": Object {
       "$$typeof": Symbol(react.forward_ref),
@@ -126,7 +84,7 @@ ShallowWrapper {
         "rules": Array [
           "
   width: 200px;
-  height: 250px;
+  height: 450px;
   margin: 20px;
   background-color: whitesmoke;
   img {
@@ -152,90 +110,27 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <h3
-            className=""
-          />,
-          <p>
-            Homeworld: 
-          </p>,
-          <p>
-            Population: 
-          </p>,
-          <p>
-            Species: 
-          </p>,
           <img
             alt="lightsaber icon - favorite"
             src="lightsaber.png"
           />,
+          <h3
+            className=""
+          />,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
         ],
         "onClick": [Function],
       },
       "ref": null,
       "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": undefined,
-            "className": "",
-          },
-          "ref": null,
-          "rendered": null,
-          "type": "h3",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              "Homeworld: ",
-              undefined,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            "Homeworld: ",
-            undefined,
-          ],
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              "Population: ",
-              undefined,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            "Population: ",
-            undefined,
-          ],
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              "Species: ",
-              undefined,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            "Species: ",
-            undefined,
-          ],
-          "type": "p",
-        },
         Object {
           "instance": null,
           "key": undefined,
@@ -248,6 +143,27 @@ ShallowWrapper {
           "rendered": null,
           "type": "img",
         },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": undefined,
+            "className": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "h3",
+        },
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
       ],
       "type": Object {
         "$$typeof": Symbol(react.forward_ref),
@@ -258,7 +174,7 @@ ShallowWrapper {
           "rules": Array [
             "
   width: 200px;
-  height: 250px;
+  height: 450px;
   margin: 20px;
   background-color: whitesmoke;
   img {

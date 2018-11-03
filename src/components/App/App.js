@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import './App.css';
 import Nav from '../Nav/Nav';
 import FilmScroll from '../FilmScroll/FilmScroll';
 import CardContainer from '../CardContainer/CardContainer';
-import './App.css';
 import loading from '../../assets/loading.gif';
-import { fetchFilm, fetchPeople, fetchPlanets, fetchVehicles } from '../../utils/apiCalls';
+import fetchFilm from '../../api/fetchFilm'
+import fetchPeople from '../../api/fetchPeople'
+import fetchPlanets from '../../api/fetchPlanets'
+import fetchVehicles from '../../api/fetchVehicles'
 
 class App extends Component {
   constructor() {
