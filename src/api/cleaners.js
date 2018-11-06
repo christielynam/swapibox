@@ -48,7 +48,7 @@ export const getResidents = (planetArray) => {
   return Promise.all(planets)
 }
 
-const cleanResidents = (residentArray) => {
+export const cleanResidents = (residentArray) => {
   return residentArray.map(resident => resident.name)
 }
 
