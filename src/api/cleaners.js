@@ -1,10 +1,11 @@
+import { fetchHomeworld, fetchSpecie } from './fetchPeople'
+
 // People
 
-export const getHomeworld = (peopleArray) => {
+export const getHomeworlds = (peopleArray) => {
   const homeworldPromises = peopleArray.map(async person => {
-    const response = await fetch(person.homeworld)
-    const homeworld = await response.json()
-    return { 
+    const homeworld = await fetchHomeworld(person.homeworld)
+    return {
       name: person.name, 
       homeworld: homeworld.name, 
       population: homeworld.population,
@@ -18,9 +19,8 @@ export const getHomeworld = (peopleArray) => {
 
 export const getSpecies = (peopleArray) => {
   const speciesPromises = peopleArray.map(async person => {
-    const response = await fetch(person.species[0])
-    const species = await response.json()
-    return {...person, species: species.name}
+    const specie = await fetchSpecie(person.species[0])
+    return {...person, species: specie.name}
   })
   return Promise.all(speciesPromises)
 }

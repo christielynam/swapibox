@@ -1,8 +1,8 @@
-import fetchPeople from '../fetchPeople'
-import { getHomeworld, getSpecies } from '../cleaners'
+import fetchPeople, { fetchHomeworld, fetchSpecie } from '../fetchPeople'
+import { getHomeworlds, getSpecies } from '../cleaners'
 
 jest.mock('../cleaners', () => ({
-  getHomeworld: jest.fn(),
+  getHomeworlds: jest.fn(),
   getSpecies: jest.fn()
 }))
 
@@ -43,7 +43,7 @@ describe('fetchPeople', () => {
   
     await fetchPeople(mockUrl)
 
-    expect(getHomeworld).toHaveBeenCalled()
+    expect(getHomeworlds).toHaveBeenCalled()
   })
 
   it('should call getSpecies', async () => {
@@ -58,3 +58,58 @@ describe('fetchPeople', () => {
     expect(getSpecies).toHaveBeenCalled()
   })
 })
+
+describe('fetchHomeworld', () => {
+  let mockUrl
+  let mockHomeworld
+
+  beforeEach(() => {
+    mockUrl = 'www.people/1'
+    mockHomeworld = 'Earth'
+
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(mockHomeworld)
+    }))
+  })
+
+  it('should call fetch with the correct params', () => {
+
+    fetchHomeworld(mockUrl)
+
+    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+  })
+
+  it('should return a homeworld', async () => {
+    const result = await fetchHomeworld(mockUrl)
+
+    expect(result).toEqual(mockHomeworld)
+  })
+})
+
+describe('fetchSpecie', () => {
+  let mockUrl
+  let mockSpecie
+
+  beforeEach(() => {
+    mockUrl = 'www.people/1'
+    mockSpecie = 'Human'
+
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(mockSpecie)
+    }))
+  })
+
+  it('should call fetch with the correct params', () => {
+
+    fetchSpecie(mockUrl)
+
+    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+  })
+
+  it('should return a specie', async () => {
+    const result = await fetchSpecie(mockUrl)
+
+    expect(result).toEqual(mockSpecie)
+  })
+})
+

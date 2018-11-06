@@ -21,8 +21,14 @@ const Card = ({ item, toggleFavorite }) => {
       className='card-style' 
       onClick={() => toggleFavorite(item.type, item.name)}
     >
-      <img src={lightsaber} alt='lightsaber icon - favorite' />
-      <h3 className={item.favorited && 'favorited'}>{item.name}</h3>
+      <img 
+        className='light-saber' 
+        src={lightsaber} 
+        alt='lightsaber icon - favorite' 
+      />
+      <h3 className={item.favorited ? 'favorited' : ''}>
+        {item.name}
+      </h3>
       {item.homeworld && <p>Homeworld: {item.homeworld}</p>}
       {item.population && <p>Population: {item.population}</p>}
       {item.species && <p>Species: {item.species}</p>}

@@ -7,8 +7,11 @@ exports[`Card matches the snapshot 1`] = `
 >
   <img
     alt="lightsaber icon - favorite"
+    className="light-saber"
     src="lightsaber.png"
   />
-  <h3 />
+  <h3
+    className=""
+  />
 </div>
 `;
