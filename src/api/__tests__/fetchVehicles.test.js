@@ -1,4 +1,4 @@
-import fetchVehicles from './fetchVehicles'
+import fetchVehicles from '../fetchVehicles'
 
 describe('fetchVehicles', () => {
   let mockUrl

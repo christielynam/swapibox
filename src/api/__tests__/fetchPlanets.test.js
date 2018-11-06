@@ -1,7 +1,7 @@
-import fetchPlanets from './fetchPlanets'
-import { getResidents } from './cleaners'
+import fetchPlanets from '../fetchPlanets'
+import { getResidents } from '../cleaners'
 
-jest.mock('./cleaners.js', () => ({
+jest.mock('../cleaners.js', () => ({
   getResidents: jest.fn()
 }))
 

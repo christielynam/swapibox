@@ -5,10 +5,12 @@ import { shallow } from 'enzyme'
 describe('Card', () => {
   let wrapper
   let mockItem
+  let mockToggleFavorite
 
   beforeEach(() => {
     mockItem = {}
-    wrapper = shallow(<Card item={mockItem} />)
+    mockToggleFavorite = jest.fn()
+    wrapper = shallow(<Card item={mockItem} toggleFavorite={mockToggleFavorite} />)
   })
 
   it('matches the snapshot', () => {
@@ -17,7 +19,10 @@ describe('Card', () => {
 
   it('should call toggleFavorite when the card is clicked', () => {
     const card = wrapper.find('.card-style')
-    console.log(card)
+
+    card.simulate('click')
+
+    expect(mockToggleFavorite).toHaveBeenCalled()
   })
   
 })

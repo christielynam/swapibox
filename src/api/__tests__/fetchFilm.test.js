@@ -1,4 +1,4 @@
-import fetchFilm from './fetchFilm.js'
+import fetchFilm from '../fetchFilm'
 
 describe('fetchFilm', () => {
   let mockUrl

@@ -16,7 +16,6 @@ import './Card.css'
 // `
 
 const Card = ({ item, toggleFavorite }) => {
-
   return (
     <div 
       className='card-style' 

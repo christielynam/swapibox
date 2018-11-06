@@ -1,7 +1,7 @@
-import fetchPeople from './fetchPeople'
-import { getHomeworld, getSpecies } from './cleaners'
+import fetchPeople from '../fetchPeople'
+import { getHomeworld, getSpecies } from '../cleaners'
 
-jest.mock('./cleaners', () => ({
+jest.mock('../cleaners', () => ({
   getHomeworld: jest.fn(),
   getSpecies: jest.fn()
 }))
