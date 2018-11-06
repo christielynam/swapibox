@@ -2,14 +2,11 @@ import { cleanVehicles, cleanResidents, getHomeworlds } from '../cleaners'
 import { fetchHomeworld } from '../fetchPeople'
 import * as MD from '../mockData';
 
-// const withHomeworlds = [
-//   {name: 'Christie', homeworld: 'Earth', type: 'people', favorited: false},
-//   {name: 'Will', homeworld: 'Mars', type: 'people', favorited: false}
-// ]
-
+const mockHomeworld = {name: 'Earth', population: '2000000'}
+  
 jest.mock('../fetchPeople.js', () => ({
   fetchHomeworld: jest.fn()
-  // .mockImplemetation(() => Promise.resolve(withHomeworlds))
+  .mockImplementation(() => Promise.resolve(mockHomeworld))
 }))
 
 describe('getHomeworlds', () => {
@@ -17,8 +14,8 @@ describe('getHomeworlds', () => {
 
   beforeEach(() => {
     mockPeople = [
-      {name: 'Christie', homeworld: 'www.myhomeworld.com'},
-      {name: 'Will', homeworld: 'www.willshomeworld.com'}
+      {name: 'Christie', homeworld: 'www.myhomeworld.com', species: 'www.species.com'},
+      {name: 'Will', homeworld: 'www.willshomeworld.com', species: 'www.species.com'}
     ]
   })
 
@@ -28,15 +25,13 @@ describe('getHomeworlds', () => {
     expect(fetchHomeworld).toHaveBeenCalled()
   })
 
-  it.skip('should return an array of people objects with homeworlds', () => {
+  it('should return an array of people objects with homeworlds', async () => {
     const expected = [
-      {name: 'Christie', homeworld: 'Earth', type: 'people', favorited: false},
-      {name: 'Will', homeworld: 'Mars', type: 'people', favorited: false}
+      {name: 'Christie', homeworld: 'Earth', population: '2000000', species: 'www.species.com', type: 'people', favorited: false},
+      {name: 'Will', homeworld: 'Earth', population: '2000000', species: 'www.species.com', type: 'people', favorited: false}
     ]
 
-    // window.fetch = jest.fn().mockImplementation(() => Promise.resolve())
-
-    const result = getHomeworlds(mockPeople)
+    const result = await getHomeworlds(mockPeople)
 
     expect(result).toEqual(expected)
   })
