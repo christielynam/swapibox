@@ -14,5 +14,10 @@ describe('Card', () => {
   it('matches the snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })
+
+  it('should call toggleFavorite when the card is clicked', () => {
+    const card = wrapper.find('.card-style')
+    console.log(card)
+  })
   
 })

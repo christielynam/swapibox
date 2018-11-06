@@ -28,12 +28,16 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme-to-json": "^3.3.4",
     "prop-types": "^15.6.2"
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ]
   }
 }

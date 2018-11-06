@@ -12,7 +12,7 @@ describe('fetchVehicles', () => {
     }))
   })
 
-  it.skip('should call fetch with the correct params', () => {
+  it('should call fetch with the correct params', () => {
     fetchVehicles(mockUrl)
 
     expect(window.fetch).toHaveBeenCalledWith(mockUrl)
