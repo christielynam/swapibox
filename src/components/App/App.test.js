@@ -117,6 +117,18 @@ describe('App', () => {
 
     expect(wrapper.state('vehicles')).toEqual(expected)
   })
+
+  it('toggleFavorite toggles the favorite property on an item', () => {
+
+  })
+
+  it('collectFavodrites returns an array of all the favorited items', () => {
+
+  })
+
+  it('favoriteCount returns the number of items that are favorited', () => {
+    
+  })
 })
 
 

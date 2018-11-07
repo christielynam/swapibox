@@ -1,12 +1,14 @@
-import { cleanVehicles, cleanResidents, getHomeworlds } from '../cleaners'
-import { fetchHomeworld } from '../fetchPeople'
+import { cleanVehicles, cleanResidents, getHomeworlds, getSpecies } from '../cleaners'
+import { fetchHomeworld, fetchSpecie } from '../fetchPeople'
 import * as MD from '../mockData';
 
 const mockHomeworld = {name: 'Earth', population: '2000000'}
+
+const mockWithSpecie = {name: 'Human'}
   
 jest.mock('../fetchPeople.js', () => ({
-  fetchHomeworld: jest.fn()
-  .mockImplementation(() => Promise.resolve(mockHomeworld))
+  fetchHomeworld: jest.fn().mockImplementation(() => Promise.resolve(mockHomeworld)),
+  fetchSpecie: jest.fn().mockImplementation(() => Promise.resolve(mockWithSpecie))
 }))
 
 describe('getHomeworlds', () => {
@@ -39,6 +41,32 @@ describe('getHomeworlds', () => {
 })
 
 describe('getSpecies', () => {
+  let mockPeople
+
+  beforeEach(() => {
+    mockPeople = [
+      {name: 'Christie', homeworld: 'Earth', population: '2000000', species: 'www.species.com', type: 'people', favorited: false},
+      {name: 'Will', homeworld: 'Earth', population: '2000000', species: 'www.species.com', type: 'people', favorited: false}
+    ]
+  })
+
+  it('should call fetchSpecie', () => {
+    getSpecies(mockPeople)
+
+    expect(fetchSpecie).toHaveBeenCalled()
+  })
+
+  it('should return an array of people with species', async () => {
+
+    const expected = [
+      {name: 'Christie', homeworld: 'Earth', population: '2000000', species: 'Human', type: 'people', favorited: false},
+      {name: 'Will', homeworld: 'Earth', population: '2000000', species: 'Human', type: 'people', favorited: false}
+    ]
+
+    const result = await getSpecies(mockPeople)
+
+    expect(result).toEqual(expected)
+  })
 
 })
 

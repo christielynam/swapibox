@@ -1,4 +1,4 @@
-import { fetchHomeworld, fetchSpecie } from './fetchPeople'
+import { fetchHomeworld, fetchSpecie, fetchPerson } from './fetchPeople'
 
 // People
 
@@ -30,8 +30,7 @@ export const getSpecies = (peopleArray) => {
 export const getResidents = (planetArray) => { 
   const planets = planetArray.map(async planet => {
     const residentPromises = planet.residents.map(async link => {
-      const response = await fetch(link)
-      return await response.json()
+      return await fetchPerson(link)
     })
     const residents = await Promise.all(residentPromises)
     const residentNames = await cleanResidents(residents)

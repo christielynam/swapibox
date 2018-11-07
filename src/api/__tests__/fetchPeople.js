@@ -1,4 +1,4 @@
-import fetchPeople, { fetchHomeworld, fetchSpecie } from '../fetchPeople'
+import fetchPeople, { fetchHomeworld, fetchSpecie, fetchPerson } from '../fetchPeople'
 import { getHomeworlds, getSpecies } from '../cleaners'
 
 jest.mock('../cleaners', () => ({
@@ -112,4 +112,32 @@ describe('fetchSpecie', () => {
     expect(result).toEqual(mockSpecie)
   })
 })
+
+describe('fetchPerson', () => {
+  let mockUrl
+  let mockPerson
+
+  beforeEach(() => {
+    mockUrl = 'www.person.com'
+    mockPerson = 'Christie'
+
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(mockPerson)
+    }))
+  })
+
+  it('should call fetch with the correct params', () => {
+
+    fetchPerson(mockUrl)
+
+    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+  })
+
+  it('should return a person', async () => {
+    const result = await fetchPerson(mockUrl)
+
+    expect(result).toEqual(mockPerson)
+  })
+})
+
 

@@ -17,4 +17,9 @@ export const fetchSpecie = async (url) => {
   return await response.json()
 }
 
+export const fetchPerson = async (url) => {
+  const response = await fetch(url)
+  return await response.json()
+}
+
 export default fetchPeople
