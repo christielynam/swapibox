@@ -1,14 +1,17 @@
-import { cleanVehicles, cleanResidents, getHomeworlds, getSpecies } from '../cleaners'
-import { fetchHomeworld, fetchSpecie } from '../fetchPeople'
+import { cleanVehicles, cleanResidents, getHomeworlds, getSpecies, getResidents } from '../cleaners'
+import { fetchHomeworld, fetchSpecie, fetchPerson } from '../fetchPeople'
 import * as MD from '../mockData';
 
 const mockHomeworld = {name: 'Earth', population: '2000000'}
 
 const mockWithSpecie = {name: 'Human'}
+
+const mockPerson = ['Lobot', 'Poggle']
   
 jest.mock('../fetchPeople.js', () => ({
   fetchHomeworld: jest.fn().mockImplementation(() => Promise.resolve(mockHomeworld)),
-  fetchSpecie: jest.fn().mockImplementation(() => Promise.resolve(mockWithSpecie))
+  fetchSpecie: jest.fn().mockImplementation(() => Promise.resolve(mockWithSpecie)),
+  fetchPerson: jest.fn().mockImplementation(() => Promise.resolve(mockPerson))
 }))
 
 describe('getHomeworlds', () => {
@@ -71,6 +74,22 @@ describe('getSpecies', () => {
 })
 
 describe('getResidents', () => {
+  let mockPlanets
+
+  beforeEach(() => {
+    mockPlanets = [
+      {name: 'Bespin', population: '6000000',
+      terrain: 'gas giant', climate: 'temperate', residents: ['www.starwars.com/resident/1']}, 
+      {name: 'Geonosis', population: '100000000000',
+      terrain: 'rock, desert, mountain, barren', climate: 'temperate, arid', residents: ['www.starwars.com/resident/2 ']}
+    ]
+  })
+
+  it('should call fetchPerson', () => {
+    getResidents(mockPlanets)
+
+    expect(fetchPerson).toHaveBeenCalled()
+  })
 
 })
 

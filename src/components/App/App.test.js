@@ -220,40 +220,6 @@ describe('App', () => {
     expect(wrapper.instance().collectFavorites()).toEqual(expected)
   })
 
-  it.skip('favoriteCount calls collectFavorites', () => {
-    // wrapper = mount(<App />)
-    // const favs = 
-    // const spy = spyOn(wrapper.instance(), 'collectFavorites')
-
-    // wrapper.instance().favoriteCount()
-
-    // expect(spy).toHaveBeenCalled()
-  })
-
-  it.skip('favoriteCount returns the number of items that are favorited', () => {
-    const mockFavs = [
-      {
-      name: 'Sand Crawler',
-      model: 'Digger Crawler',
-      class: 'wheeled',
-      passengers: '30',
-      type: 'vehicles',
-      favorited: true
-    }, 
-    {
-      favorited: true, 
-      climate: 'temperate',
-      name: 'Alderaan',
-      population: '200000000',
-      residents: ['Leia', 'Bail', 'Raymus'],
-      terrain: 'grasslands, mountains',
-      type: 'planets'
-    }
-  ]
-
-  const expected = mockFavs.length
-
-  })
 })
 
 describe('Routes', () => {
