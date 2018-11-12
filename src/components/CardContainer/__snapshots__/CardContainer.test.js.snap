@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CardContainer matches the snapshot 1`] = `
+exports[`CardContainer matches the snapshot if there is data 1`] = `
 <styled.div>
   <Card
     item={
@@ -23,6 +23,15 @@ exports[`CardContainer matches the snapshot 1`] = `
       }
     }
     key="Will"
+  />
+</styled.div>
+`;
+
+exports[`CardContainer matches the snapshot if there is no data 1`] = `
+<styled.div>
+  <img
+    alt="loading gif"
+    src="loading.gif"
   />
 </styled.div>
 `;

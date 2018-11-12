@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Card matches the snapshot 1`] = `
-<div
+<styled.div
   className="card-style"
   onClick={[Function]}
 >
@@ -12,6 +12,44 @@ exports[`Card matches the snapshot 1`] = `
   />
   <h3
     className=""
-  />
-</div>
+  >
+    Christie
+  </h3>
+  <p>
+    Homeworld: 
+    Earth
+  </p>
+  <p>
+    Population: 
+    500
+  </p>
+  <p>
+    Species: 
+    Human
+  </p>
+  <p>
+    Terrain: 
+    mountains
+  </p>
+  <p>
+    Climate: 
+    rainy
+  </p>
+  <p>
+    Residents: 
+    Hudson,Bradley,Missy
+  </p>
+  <p>
+    Model: 
+    Range Rover
+  </p>
+  <p>
+    Class: 
+    HSE Sport
+  </p>
+  <p>
+    Passengers: 
+    5
+  </p>
+</styled.div>
 `;

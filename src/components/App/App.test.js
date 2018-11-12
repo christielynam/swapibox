@@ -1,6 +1,9 @@
 import React from 'react';
 import App from './App';
-import { shallow } from 'enzyme'
+import { MemoryRouter } from 'react-router'
+import { shallow, mount } from 'enzyme'
+import Nav from '../Nav/Nav'
+import CardContainer from '../CardContainer/CardContainer';
 import fetchFilm from '../../api/fetchFilm'
 import fetchPeople from '../../api/fetchPeople'
 import fetchPlanets from '../../api/fetchPlanets'
@@ -16,6 +19,12 @@ describe('App', () => {
   
   beforeEach(() => {
     wrapper = shallow(<App />)
+  })
+
+  afterEach(() => {
+    fetchPeople.mockClear()
+    fetchPlanets.mockClear()
+    fetchVehicles.mockClear()
   })
 
   it('matches the snapshot', () => {
@@ -73,6 +82,24 @@ describe('App', () => {
     expect(wrapper.state('people')).toEqual(expected)
   })
 
+  it('should not call fetchPeople if there are already people in state',async () => {
+    wrapper.setState({
+      people: [{
+        favorited: false, 
+        homeworld: 'Tatooine',
+        name: 'Luke Skywalker',
+        population: '200000',
+        species: 'Human',
+        type: 'people'
+      }]
+    })
+
+    await wrapper.instance().getPeople()
+
+    expect(fetchPeople).not.toHaveBeenCalled()
+  })
+
+
   it('getPlanets calls fetchPlanets', () => {
     wrapper.instance().getPlanets()
 
@@ -94,6 +121,24 @@ describe('App', () => {
     await wrapper.instance().getPlanets()
 
     expect(wrapper.state('planets')).toEqual(expected)
+  })
+
+  it('should not call fetchPlanets if there are already planents in state', async () => {
+    wrapper.setState({
+      planets: [{
+        favorited: false, 
+        climate: 'temperate',
+        name: 'Alderaan',
+        population: '200000000',
+        residents: ['Leia', 'Bail', 'Raymus'],
+        terrain: 'grasslands, mountains',
+        type: 'planets'
+      }]
+    })
+
+    await wrapper.instance().getPlanets()
+
+    expect(fetchPlanets).not.toHaveBeenCalled()
   })
 
   it('getVehicles calls fetchVehicles', () => {
@@ -118,16 +163,138 @@ describe('App', () => {
     expect(wrapper.state('vehicles')).toEqual(expected)
   })
 
-  it('toggleFavorite toggles the favorite property on an item', () => {
+  it('should not call fetchVehicles if there are already vehicles in state', async () => {
+    wrapper.setState({
+      vehicles: [{
+        name: 'Sand Crawler',
+        model: 'Digger Crawler',
+        class: 'wheeled',
+        passengers: '30',
+        type: 'vehicles',
+        favorited: false
+      }]
+    })
 
+    await wrapper.instance().getVehicles()
+
+    expect(fetchVehicles).not.toHaveBeenCalled()
   })
 
-  it('collectFavodrites returns an array of all the favorited items', () => {
+  it('toggleFavorite toggles favorite from false to true on an item', () => {
+    const mockPeople = [{name: 'Christie', homeworld: 'Earth', population: '1', species: 'Human', type: 'people', favorited: false}, {name: 'Will', homeworld: 'Earth', population: '100', species: 'Human', type: 'people', favorited: false}]
 
+    wrapper.setState({ people: mockPeople })
+
+    const expected = [{name: 'Christie', homeworld: 'Earth', population: '1', species: 'Human', type: 'people', favorited: true}, {name: 'Will', homeworld: 'Earth', population: '100', species: 'Human', type: 'people', favorited: false}]
+
+    wrapper.instance().toggleFavorite('people', 'Christie')
+
+    expect(wrapper.state('people')).toEqual(expected)
   })
 
-  it('favoriteCount returns the number of items that are favorited', () => {
+  it('toggleFavorite toggles favorite from true to false on an item', () => {
+    const mockPeople = [{name: 'Christie', homeworld: 'Earth', population: '1', species: 'Human', type: 'people', favorited: true}, {name: 'Will', homeworld: 'Earth', population: '100', species: 'Human', type: 'people', favorited: false}]
+
+    wrapper.setState({ people: mockPeople })
+
+    const expected = [{name: 'Christie', homeworld: 'Earth', population: '1', species: 'Human', type: 'people', favorited: false}, {name: 'Will', homeworld: 'Earth', population: '100', species: 'Human', type: 'people', favorited: false}]
+
+    wrapper.instance().toggleFavorite('people', 'Christie')
+
+    expect(wrapper.state('people')).toEqual(expected)
+  })
+
+  it('collectFavorites returns an array of all the favorited items', () => {
+    const mockPeople = [{name: 'Christie', homeworld: 'Earth', population: '1', species: 'Human', type: 'people', favorited: true}, {name: 'Will', homeworld: 'Earth', population: '100', species: 'Human', type: 'people', favorited: false}]
+    const mockPlanets = [{favorited: false, climate: 'temperate', name: 'Alderaan', population: '200000000', residents: ['Leia', 'Bail', 'Raymus'], terrain: 'grasslands, mountains', type: 'planets'}, {favorited: true, climate: 'humid', name: 'Alabama', population: '100000', residents: ['Christie', 'Hudson'], terrain: 'rolling hills', type: 'palnets'}]
+    const mockVehicles = [{name: 'Sand Crawler', model: 'Digger Crawler', class: 'wheeled', passengers: '30', type: 'vehicles', favorited: false}, {name: 'Range Rover', model: 'Sport HSE', class: 'AWD', passengers: '5', type: 'vehicles', favorited: true}]
+
+    wrapper.setState({
+      people: mockPeople,
+      planets: mockPlanets,
+      vehicles: mockVehicles
+    })
     
+    const expected = [{name: 'Christie', homeworld: 'Earth', population: '1', species: 'Human', type: 'people', favorited: true}, {favorited: true, climate: 'humid', name: 'Alabama', population: '100000', residents: ['Christie', 'Hudson'], terrain: 'rolling hills', type: 'palnets'}, {name: 'Range Rover', model: 'Sport HSE', class: 'AWD', passengers: '5', type: 'vehicles', favorited: true}]
+
+    expect(wrapper.instance().collectFavorites()).toEqual(expected)
+  })
+
+  it.skip('favoriteCount calls collectFavorites', () => {
+    // wrapper = mount(<App />)
+    // const favs = 
+    // const spy = spyOn(wrapper.instance(), 'collectFavorites')
+
+    // wrapper.instance().favoriteCount()
+
+    // expect(spy).toHaveBeenCalled()
+  })
+
+  it.skip('favoriteCount returns the number of items that are favorited', () => {
+    const mockFavs = [
+      {
+      name: 'Sand Crawler',
+      model: 'Digger Crawler',
+      class: 'wheeled',
+      passengers: '30',
+      type: 'vehicles',
+      favorited: true
+    }, 
+    {
+      favorited: true, 
+      climate: 'temperate',
+      name: 'Alderaan',
+      population: '200000000',
+      residents: ['Leia', 'Bail', 'Raymus'],
+      terrain: 'grasslands, mountains',
+      type: 'planets'
+    }
+  ]
+
+  const expected = mockFavs.length
+
+  })
+})
+
+describe('Routes', () => {
+  it('should render the Nav component when at the root route', () => {
+    const wrapper = mount(<MemoryRouter initialEntries={['/']}>
+      <App />
+    </MemoryRouter>)
+
+    expect(wrapper.find(Nav)).toHaveLength(1)
+  })
+
+  it('should render the CardContainer when at the people route', () => {
+    const wrapper = mount(<MemoryRouter initialEntries={['/people']}>
+      <App />
+    </MemoryRouter>)
+
+    expect(wrapper.find(CardContainer)).toHaveLength(1)
+  })
+
+  it('should render the CardContainer when at the planets route', () => {
+    const wrapper = mount(<MemoryRouter initialEntries={['/planets']}>
+      <App />
+    </MemoryRouter>)
+
+    expect(wrapper.find(CardContainer)).toHaveLength(1)
+  })
+
+  it('should render the CardContainer when at the vehicles route', () => {
+    const wrapper = mount(<MemoryRouter initialEntries={['/vehicles']}>
+      <App />
+    </MemoryRouter>)
+
+    expect(wrapper.find(CardContainer)).toHaveLength(1)
+  })
+
+  it('should render the CardContainer when at the favorites route', () => {
+    const wrapper = mount(<MemoryRouter initialEntries={['/favorites']}>
+      <App />
+    </MemoryRouter>)
+
+    expect(wrapper.find(CardContainer)).toHaveLength(1)
   })
 })
 

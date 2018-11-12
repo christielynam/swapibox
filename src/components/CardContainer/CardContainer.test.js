@@ -3,11 +3,15 @@ import CardContainer from './CardContainer';
 import { shallow } from 'enzyme'
 
 describe('CardContainer', () => {
-  let wrapper
-  let mockData 
 
-  beforeEach(() => {
-    mockData = [
+  it('matches the snapshot if there is no data', () => {
+    const wrapper = shallow(<CardContainer data={[]} />)
+
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('matches the snapshot if there is data', () => {
+    const mockData = [
       {
         name: 'Christie',
         species: 'Human',
@@ -21,11 +25,9 @@ describe('CardContainer', () => {
         favorited: false
       }
     ]
-    wrapper = shallow(<CardContainer data={mockData} />)
-  })
-
-  it('matches the snapshot', () => {
+    const wrapper = shallow(<CardContainer data={mockData} />)
     expect(wrapper).toMatchSnapshot()
   })
+
   
 })

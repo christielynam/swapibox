@@ -3,21 +3,21 @@ import styled from 'styled-components'
 import lightsaber from '../../assets/lightsaber.png'
 import './Card.css'
 
-// const CardStyle = styled.div`
-//   width: 200px;
-//   height: 450px;
-//   margin: 20px;
-//   background-color: whitesmoke;
-//   img {
-//     width: 35px;
-//     height: 35px;
-//     cursor: pointer
-//   }
-// `
+export const CardStyle = styled.div`
+  width: 200px;
+  height: 450px;
+  margin: 20px;
+  background-color: whitesmoke;
+  img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer
+  }
+`
 
 const Card = ({ item, toggleFavorite }) => {
   return (
-    <div 
+    <CardStyle 
       className='card-style' 
       onClick={() => toggleFavorite(item.type, item.name)}
     >
@@ -38,7 +38,7 @@ const Card = ({ item, toggleFavorite }) => {
       {item.model && <p>Model: {item.model}</p>}
       {item.class && <p>Class: {item.class}</p>}
       {item.passengers && <p>Passengers: {item.passengers}</p>}
-    </div>
+    </CardStyle>
   )  
 }
 

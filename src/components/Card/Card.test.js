@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import { CardStyle } from './Card';
 import { shallow } from 'enzyme'
 
 describe('Card', () => {
@@ -8,7 +9,7 @@ describe('Card', () => {
   let mockToggleFavorite
 
   beforeEach(() => {
-    mockItem = {}
+    mockItem = {name: 'Christie', homeworld: 'Earth', population: '500', species: 'Human', terrain: 'mountains', climate: 'rainy', residents: ['Hudson', 'Bradley', 'Missy'], model: 'Range Rover', class: 'HSE Sport', passengers: '5'}
     mockToggleFavorite = jest.fn()
     wrapper = shallow(<Card item={mockItem} toggleFavorite={mockToggleFavorite} />)
   })
@@ -18,7 +19,7 @@ describe('Card', () => {
   })
 
   it('should call toggleFavorite when the card is clicked', () => {
-    const card = wrapper.find('.card-style')
+    const card = wrapper.find(CardStyle)
 
     card.simulate('click')
 
