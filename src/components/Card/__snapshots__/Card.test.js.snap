@@ -11,7 +11,7 @@ exports[`Card matches the snapshot 1`] = `
     src="lightsaber.png"
   />
   <h3
-    className=""
+    className="favorited"
   >
     Christie
   </h3>
