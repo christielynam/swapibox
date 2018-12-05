@@ -39,14 +39,12 @@ describe('Card', () => {
 
   it('should have a class of favorited if the card has been favorited', () => {
     const name = wrapper.find('h3')
-
+    
     expect(name.hasClass('favorited')).toBe(true)
   })
 
-  it.skip('should not have a class of favorited if the card has not been favorited', () => {
-
-    const name = wrapper.find('h3')
-
+  it('should not have a class of favorited if the card has not been favorited', () => {
+        
     mockItem = {
       name: 'Christie', 
       homeworld: 'Earth', 
@@ -60,6 +58,10 @@ describe('Card', () => {
       passengers: '5', 
       favorited: false
     }
+    
+    wrapper = shallow(<Card item={mockItem} toggleFavorite={mockToggleFavorite} />)
+
+    const name = wrapper.find('h3')
 
     expect(name.hasClass('favorited')).toBe(false)
   })
