@@ -27,9 +27,9 @@ class App extends Component {
     const url = `https://swapi.co/api/films/${num}`
     try {
       const film = await fetchFilm(url)
-      this.setState({film})
+      this.setState({ film })
     } catch(error) {
-      this.setState({error: error.message})
+      this.setState({ error: error.message })
     }
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
         const people = await fetchPeople(url)
         this.setState({ people })
       } catch(error) {
-        this.setState({error: error.message})
+        this.setState({ error: error.message })
       }
     }
   }
@@ -52,7 +52,7 @@ class App extends Component {
         const planets = await fetchPlanets(url)
         this.setState({ planets })
       } catch(error) {
-        this.setState({error: error.message})
+        this.setState({ error: error.message })
       }
     }
   }
@@ -64,7 +64,7 @@ class App extends Component {
         const vehicles = await fetchVehicles(url)
         this.setState({ vehicles })
       } catch(error) {
-        this.setState({error: error.message})
+        this.setState({ error: error.message })
       }
     }
   }
@@ -90,7 +90,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className='app-title'>SwapiBox</h1>
-        {error && error}
+        { error && error }
         <Route 
           path='/' 
           render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} getVehicles={this.getVehicles} count={this.favoriteCount} />} 
