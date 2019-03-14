@@ -1,18 +1,11 @@
 import { cleanVehicles, cleanResidents, getHomeworlds, getSpecies, getResidents } from '../cleaners'
-import { fetchHomeworld, fetchSpecie, fetchPerson } from '../fetchPeople'
+import { fetchData } from '../fetchData'
 import * as MD from '../mockData';
 
 const mockHomeworld = {name: 'Earth', population: '2000000'}
-
 const mockWithSpecie = {name: 'Human'}
-
-const mockPerson = ['Lobot', 'Poggle']
   
-jest.mock('../fetchPeople.js', () => ({
-  fetchHomeworld: jest.fn().mockImplementation(() => Promise.resolve(mockHomeworld)),
-  fetchSpecie: jest.fn().mockImplementation(() => Promise.resolve(mockWithSpecie)),
-  fetchPerson: jest.fn().mockImplementation(() => Promise.resolve(mockPerson))
-}))
+jest.mock('../fetchData.js')
 
 describe('getHomeworlds', () => {
   let mockPeople
@@ -24,13 +17,15 @@ describe('getHomeworlds', () => {
     ]
   })
 
-  it('should call fetchHomeworld', () => {
+  it('should call fetchData', () => {
     getHomeworlds(mockPeople)
 
-    expect(fetchHomeworld).toHaveBeenCalled()
+    expect(fetchData).toHaveBeenCalled()
   })
 
   it('should return an array of people objects with homeworlds', async () => {
+    fetchData.mockImplementation(() => Promise.resolve(mockHomeworld))
+
     const expected = [
       {name: 'Christie', homeworld: 'Earth', population: '2000000', species: 'www.species.com', type: 'people', favorited: false},
       {name: 'Will', homeworld: 'Earth', population: '2000000', species: 'www.species.com', type: 'people', favorited: false}
@@ -53,13 +48,14 @@ describe('getSpecies', () => {
     ]
   })
 
-  it('should call fetchSpecie', () => {
+  it('should call fetchData', () => {
     getSpecies(mockPeople)
 
-    expect(fetchSpecie).toHaveBeenCalled()
+    expect(fetchData).toHaveBeenCalled()
   })
 
   it('should return an array of people with species', async () => {
+    fetchData.mockImplementation(() => Promise.resolve(mockWithSpecie))
 
     const expected = [
       {name: 'Christie', homeworld: 'Earth', population: '2000000', species: 'Human', type: 'people', favorited: false},
@@ -85,10 +81,10 @@ describe('getResidents', () => {
     ]
   })
 
-  it('should call fetchPerson', () => {
+  it('should call fetchData', () => {
     getResidents(mockPlanets)
 
-    expect(fetchPerson).toHaveBeenCalled()
+    expect(fetchData).toHaveBeenCalled()
   })
 
 })

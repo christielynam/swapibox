@@ -38,7 +38,8 @@ describe('App', () => {
       film: {},
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [],
+      error: ''
     }
 
     expect(wrapper.state()).toEqual(defaultState)

@@ -17,7 +17,8 @@ class App extends Component {
       film: {},
       people: [],
       planets: [],
-      vehicles: []
+      vehicles: [], 
+      error: ''
     }
   }
 
@@ -31,24 +32,36 @@ class App extends Component {
   getPeople = async () => {
     const url = 'https://swapi.co/api/people'
     if(!this.state.people.length) {
-      const people = await fetchPeople(url)
-      this.setState({ people })
+      try {
+        const people = await fetchPeople(url)
+        this.setState({ people })
+      } catch(error) {
+        this.setState({error: error.message})
+      }
     }
   }
 
   getPlanets = async () => {
     const url = 'https://swapi.co/api/planets'
     if(!this.state.planets.length) {
-      const planets = await fetchPlanets(url)
-      this.setState({ planets })
+      try {
+        const planets = await fetchPlanets(url)
+        this.setState({ planets })
+      } catch(error) {
+        this.setState({error: error.message})
+      }
     }
   }
 
   getVehicles = async () => {
     const url = 'https://swapi.co/api/vehicles'
     if(!this.state.vehicles.length) {
-      const vehicles = await fetchVehicles(url)
-      this.setState({ vehicles })
+      try {
+        const vehicles = await fetchVehicles(url)
+        this.setState({ vehicles })
+      } catch(error) {
+        this.setState({error: error.message})
+      }
     }
   }
 

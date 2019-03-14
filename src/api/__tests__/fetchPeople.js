@@ -1,4 +1,4 @@
-import fetchPeople, { fetchHomeworld, fetchSpecie, fetchPerson } from '../fetchPeople'
+import fetchPeople from '../fetchPeople'
 import { getHomeworlds, getSpecies } from '../cleaners'
 
 jest.mock('../cleaners', () => ({
@@ -56,87 +56,6 @@ describe('fetchPeople', () => {
     await fetchPeople(mockUrl)
 
     expect(getSpecies).toHaveBeenCalled()
-  })
-})
-
-describe('fetchHomeworld', () => {
-  let mockUrl
-  let mockHomeworld
-
-  beforeEach(() => {
-    mockUrl = 'www.people/1'
-    mockHomeworld = 'Earth'
-
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockHomeworld)
-    }))
-  })
-
-  it('should call fetch with the correct params', () => {
-
-    fetchHomeworld(mockUrl)
-
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
-  })
-
-  it('should return a homeworld', async () => {
-    const result = await fetchHomeworld(mockUrl)
-
-    expect(result).toEqual(mockHomeworld)
-  })
-})
-
-describe('fetchSpecie', () => {
-  let mockUrl
-  let mockSpecie
-
-  beforeEach(() => {
-    mockUrl = 'www.people/1'
-    mockSpecie = 'Human'
-
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockSpecie)
-    }))
-  })
-
-  it('should call fetch with the correct params', () => {
-
-    fetchSpecie(mockUrl)
-
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
-  })
-
-  it('should return a specie', async () => {
-    const result = await fetchSpecie(mockUrl)
-
-    expect(result).toEqual(mockSpecie)
-  })
-})
-
-describe('fetchPerson', () => {
-  let mockUrl
-  let mockPerson
-
-  beforeEach(() => {
-    mockUrl = 'www.person.com'
-    mockPerson = 'Christie'
-
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockPerson)
-    }))
-  })
-
-  it('should call fetch with the correct params', () => {
-
-    fetchPerson(mockUrl)
-
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
-  })
-
-  it('should return a person', async () => {
-    const result = await fetchPerson(mockUrl)
-
-    expect(result).toEqual(mockPerson)
   })
 })
 
