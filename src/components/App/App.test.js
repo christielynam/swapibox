@@ -22,6 +22,7 @@ describe('App', () => {
   })
 
   afterEach(() => {
+    fetchFilm.mockClear()
     fetchPeople.mockClear()
     fetchPlanets.mockClear()
     fetchVehicles.mockClear()
@@ -61,6 +62,14 @@ describe('App', () => {
     expect(wrapper.state('film')).toEqual(expected)
   })
 
+  // it('should set an error in state if fetch fails', async () => {
+  //   fetchFilm.mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')))
+  //   await fetchFilm()
+  //   // wrapper.instance().componentDidMount()
+
+  //   expect(wrapper.state('error')).toBe('Fetch failed')
+  // })
+
   it('getPeople calls fetchPeople', () => {
     wrapper.instance().getPeople()
 
@@ -98,6 +107,13 @@ describe('App', () => {
     await wrapper.instance().getPeople()
 
     expect(fetchPeople).not.toHaveBeenCalled()
+  })
+
+  it('should set an error in state if fetch fails', async () => {
+    fetchPeople.mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')))
+    await wrapper.instance().getPeople()
+
+    expect(wrapper.state('error')).toBe('Fetch failed')
   })
 
 
@@ -142,6 +158,13 @@ describe('App', () => {
     expect(fetchPlanets).not.toHaveBeenCalled()
   })
 
+  it('should set an error in state if fetch fails', async () => {
+    fetchPlanets.mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')))
+    await wrapper.instance().getPlanets()
+
+    expect(wrapper.state('error')).toBe('Fetch failed')
+  })
+
   it('getVehicles calls fetchVehicles', () => {
     wrapper.instance().getVehicles()
 
@@ -179,6 +202,13 @@ describe('App', () => {
     await wrapper.instance().getVehicles()
 
     expect(fetchVehicles).not.toHaveBeenCalled()
+  })
+
+  it('should set an error in state if fetch fails', async () => {
+    fetchVehicles.mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')))
+    await wrapper.instance().getVehicles()
+
+    expect(wrapper.state('error')).toBe('Fetch failed')
   })
 
   it('toggleFavorite toggles favorite from false to true on an item', () => {

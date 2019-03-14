@@ -25,8 +25,12 @@ class App extends Component {
   async componentDidMount () {
     const num = Math.floor(Math.random() * 7 + 1)
     const url = `https://swapi.co/api/films/${num}`
-    const film = await fetchFilm(url)
-    this.setState({film})
+    try {
+      const film = await fetchFilm(url)
+      this.setState({film})
+    } catch(error) {
+      this.setState({error: error.message})
+    }
   }
 
   getPeople = async () => {
@@ -82,10 +86,11 @@ class App extends Component {
   }
 
   render() {
-    const { film, people, planets, vehicles } = this.state
+    const { film, people, planets, vehicles, error } = this.state
     return (
       <div className="App">
         <h1 className='app-title'>SwapiBox</h1>
+        {error && error}
         <Route 
           path='/' 
           render={() => <Nav getPeople={this.getPeople} getPlanets={this.getPlanets} getVehicles={this.getVehicles} count={this.favoriteCount} />} 
