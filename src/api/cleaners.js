@@ -1,10 +1,10 @@
-import { fetchHomeworld, fetchSpecie, fetchPerson } from './fetchPeople'
+import { fetchData } from './fetchData'
 
 // People
 
 export const getHomeworlds = (peopleArray) => {
   const homeworldPromises = peopleArray.map(async person => {
-    const homeworld = await fetchHomeworld(person.homeworld)
+    const homeworld = await fetchData(person.homeworld)
     return {
       name: person.name, 
       homeworld: homeworld.name, 
@@ -19,7 +19,7 @@ export const getHomeworlds = (peopleArray) => {
 
 export const getSpecies = (peopleArray) => {
   const speciesPromises = peopleArray.map(async person => {
-    const specie = await fetchSpecie(person.species[0])
+    const specie = await fetchData(person.species[0])
     return {...person, species: specie.name}
   })
   return Promise.all(speciesPromises)
@@ -30,7 +30,7 @@ export const getSpecies = (peopleArray) => {
 export const getResidents = (planetArray) => { 
   const planets = planetArray.map(async planet => {
     const residentPromises = planet.residents.map(async link => {
-      return await fetchPerson(link)
+      return await fetchData(link)
     })
     const residents = await Promise.all(residentPromises)
     const residentNames = await cleanResidents(residents)

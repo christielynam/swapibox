@@ -7,19 +7,4 @@ const fetchPeople = async (url) => {
   return await getSpecies(withHomeworld)
 }
 
-export const fetchHomeworld = async (url) => {
-  const response = await fetch(url)
-  return await response.json() 
-}
-
-export const fetchSpecie = async (url) => {
-  const response = await fetch(url)
-  return await response.json()
-}
-
-export const fetchPerson = async (url) => {
-  const response = await fetch(url)
-  return await response.json()
-}
-
 export default fetchPeople
