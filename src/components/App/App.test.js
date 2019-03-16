@@ -62,13 +62,14 @@ describe('App', () => {
     expect(wrapper.state('film')).toEqual(expected)
   })
 
-  // it('should set an error in state if fetch fails', async () => {
-  //   fetchFilm.mockImplementationOnce(() => Promise.reject(new Error('Fetch failed')))
-  //   await fetchFilm()
-  //   // wrapper.instance().componentDidMount()
+  it.skip('should set an error in state if fetch fails', async () => {
+    fetchFilm.mockImplementationOnce(() => Promise.reject())
+    const expected = 'Fetch failed'
+    // await fetchFilm()
+    // wrapper.instance().componentDidMount()
 
-  //   expect(wrapper.state('error')).toBe('Fetch failed')
-  // })
+    expect(wrapper.state('error')).toEqual(expected)
+  })
 
   it('getPeople calls fetchPeople', () => {
     wrapper.instance().getPeople()

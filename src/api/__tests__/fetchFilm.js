@@ -1,30 +1,37 @@
 import fetchFilm from '../fetchFilm'
+import { fetchData } from '../fetchData'
+
+jest.mock('../fetchData.js')
 
 describe('fetchFilm', () => {
   let mockUrl
   let mockFilm
 
   beforeEach(() => {
-    mockUrl = 'www.starwars.com'
+    mockUrl = 'www.swapi.co/films/5'
     mockFilm = {
       title: 'Some tile',
       opening_crawl: 'Some description',
       release_date: 'Some date'
     }
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockFilm)
-    }))
   })
 
-  it('calls fetch is called with the correct params', () => {
-    
+  it('should call fetchFilm', () => {
     fetchFilm(mockUrl)
 
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+    expect(fetchData).toHaveBeenCalled()
   })
 
   it('returns a film', async () => {
-
-    await expect(fetchFilm(mockUrl)).resolves.toEqual(mockFilm)
+    const uncleanFilm = {
+      title: 'Some tile',
+      opening_crawl: 'Some description',
+      release_date: 'Some date',
+      anotherProperty: 'Another value'
+    }
+    fetchData.mockImplementation(() => Promise.resolve(uncleanFilm))
+    const result = await fetchFilm(mockUrl)
+    
+    expect(result).toEqual(mockFilm)
   })
 })
