@@ -1,16 +1,18 @@
 import fetchPlanets from '../fetchPlanets'
 import { getResidents } from '../cleaners'
+import { fetchData } from '../fetchData'
 
 jest.mock('../cleaners.js', () => ({
   getResidents: jest.fn()
 }))
+jest.mock('../fetchData.js')
 
 describe('fetchPlanets', () => {
   let mockUrl
   let mockPlanets
 
   beforeEach(() => {
-    mockUrl = 'www.starwars.com'
+    mockUrl = 'www.swapi.co/planets'
     mockPlanets = [
       {
         name: 'Hoth',
@@ -24,21 +26,15 @@ describe('fetchPlanets', () => {
     ]
   })
 
-  it('should call fetch with the correct params', () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockPlanets)
-    }))
-
+  it('should call fetchData', () => {
     fetchPlanets(mockUrl)
 
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+    expect(fetchData).toHaveBeenCalled()
   })
 
   it('should call getResidents', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve({
-        results: mockPlanets
-      })
+    fetchData.mockImplementation(() => Promise.resolve({
+      results: mockPlanets
     }))
 
     await fetchPlanets(mockUrl)

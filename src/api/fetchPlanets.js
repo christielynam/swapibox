@@ -1,8 +1,8 @@
 import { getResidents } from './cleaners'
+import { fetchData } from './fetchData';
 
 const fetchPlanets = async (url) => {
-  const response = await fetch(url)
-  const planets = await response.json()
+  const planets = await fetchData(url)
   return await getResidents(planets.results) 
 }
 
