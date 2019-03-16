@@ -1,8 +1,8 @@
 import { cleanVehicles } from './cleaners'
+import { fetchData } from './fetchData';
 
 const fetchVehicles = async (url) => {
-  const response = await fetch(url)
-  const vehicles = await response.json()
+  const vehicles = await fetchData(url)
   return await cleanVehicles(vehicles.results) 
 }
 
