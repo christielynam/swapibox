@@ -1,17 +1,19 @@
 import fetchPeople from '../fetchPeople'
 import { getHomeworlds, getSpecies } from '../cleaners'
+import { fetchData } from '../fetchData'
 
 jest.mock('../cleaners', () => ({
   getHomeworlds: jest.fn(),
   getSpecies: jest.fn()
 }))
+jest.mock('../fetchData.js')
 
 describe('fetchPeople', () => {
   let mockUrl
   let mockPeople
 
   beforeEach(() => {
-    mockUrl = 'www.starwars.com'
+    mockUrl = 'www.swapi.co/people'
     mockPeople = [
       {
         favorited: false, 
@@ -24,33 +26,25 @@ describe('fetchPeople', () => {
     ] 
   })
 
-  it('should call fetch with the correct params', () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockPeople)
-    }))
-
+  it('calls fetchData', () => {
     fetchPeople(mockUrl)
 
-    expect(window.fetch).toHaveBeenCalledWith(mockUrl)
+    expect(fetchData).toHaveBeenCalled()
   })
 
   it('calls getHomeworld', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve({
-        results: mockPeople
-      })
+    fetchData.mockImplementation(() => Promise.resolve({
+      results: mockPeople
     }))
-  
+    
     await fetchPeople(mockUrl)
 
     expect(getHomeworlds).toHaveBeenCalled()
   })
 
   it('should call getSpecies', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve({
-        results: mockPeople
-      })
+    fetchData.mockImplementation(() => Promise.resolve({
+      results: mockPeople
     }))
 
     await fetchPeople(mockUrl)
