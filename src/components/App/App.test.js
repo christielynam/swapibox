@@ -63,10 +63,12 @@ describe('App', () => {
   })
 
   it.skip('should set an error in state if fetch fails', async () => {
-    fetchFilm.mockImplementationOnce(() => Promise.reject())
-    const expected = 'Fetch failed'
-    // await fetchFilm()
+    fetchFilm.mockImplementationOnce(() => Promise.resolve({
+      ok: false
+    }))
+    const expected = 'Something went wrong'
     // wrapper.instance().componentDidMount()
+    await fetchFilm()
 
     expect(wrapper.state('error')).toEqual(expected)
   })
