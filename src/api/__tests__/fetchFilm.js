@@ -16,7 +16,7 @@ describe('fetchFilm', () => {
     }
   })
 
-  it('should call fetchFilm', () => {
+  it('should call fetchData', () => {
     fetchFilm(mockUrl)
 
     expect(fetchData).toHaveBeenCalled()
