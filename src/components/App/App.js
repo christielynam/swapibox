@@ -33,6 +33,18 @@ class App extends Component {
     }
   }
 
+  // getData = async (type, func) => {
+  //   const url = `https://swapi/co/api/${type}`
+  //   if(!this.state[type].length) {
+  //     try {
+  //       const data = await func(url)
+  //       this.setState({ [type]: data })
+  //     } catch(error) {
+  //       this.setState({ error: error.message })
+  //     }
+  //   }
+  // }
+
   getPeople = async () => {
     const url = 'https://swapi.co/api/people'
     if(!this.state.people.length) {
